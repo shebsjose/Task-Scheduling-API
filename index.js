@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-const Login =require('./models/userLogin');
-
 require("./database/connection");
 
 app.use(express.json());

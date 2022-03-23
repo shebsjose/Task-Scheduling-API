@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
-const loginSchema = new mongoose.Schema({
+const registerSchema = new mongoose.Schema({
+      usename: {
+        type: String,
+        required: true,
+        max: 255,
+        min: 6,
+      },
       email: {
         type: String,
         required: true,
@@ -12,6 +18,5 @@ const loginSchema = new mongoose.Schema({
         max: 1024,
         min: 6,
       },
-      
 });
-module.exports = mongoose.model("Login",loginSchema);
+module.exports = mongoose.model("Register", registerSchema);
