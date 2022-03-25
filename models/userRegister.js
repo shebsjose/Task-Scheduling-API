@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const registerSchema = new mongoose.Schema({
-      usename: {
+      userName: {
         type: String,
         required: true,
         max: 255,
-        min: 6,
+        min: 3,
       },
       email: {
         type: String,
@@ -19,4 +19,4 @@ const registerSchema = new mongoose.Schema({
         min: 6,
       },
 });
-module.exports = mongoose.model("Register", registerSchema);
+module.exports = mongoose.model("User", registerSchema);
