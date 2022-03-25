@@ -5,6 +5,7 @@ const cors = require('cors');
 require("./database/connection");
 
 const authRoute = require("./routes/auth");
+
 app.use(cors());
 
 app.use(express.json());

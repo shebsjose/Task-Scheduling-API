@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.get("/login", async (req, res) => {
   console.log("Login => ",req.body);
 
   const { error } = loginValidation(req.body);
