@@ -21,13 +21,12 @@ router.post("/register", async (req, res) => {
     email: req.body.email,
     password: hashedPassword,
   });
-  console.log('Hello API');
   try {
     const savedUser = await user.save();
     res.send(savedUser);
   } catch (err) {
     res.status(400).send(err);
-  }
+  }rx4
 });
 
 router.post("/login", async (req, res) => {
@@ -45,7 +44,7 @@ router.post("/login", async (req, res) => {
 
   const token = jwt.sign({_id : user._id}, "My_secret_token");
   console.log(token);
-  res.header('auth-token').send(token);
+  res.header('auth-token').send({token,user});
 });
 
 module.exports = router;
