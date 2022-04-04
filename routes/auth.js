@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const User = require("../models/userRegister");
+const User = require("../models/userModel");
 const { registerValidation, loginValidation } = require("../validation");
 
 router.post("/register", async (req, res) => {
@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
     res.send(savedUser);
   } catch (err) {
     res.status(400).send(err);
-  }rx4
+  }
 });
 
 router.post("/login", async (req, res) => {
