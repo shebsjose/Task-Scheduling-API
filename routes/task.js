@@ -21,8 +21,7 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-    console.log("get Task=>", req.body);
+router.get("/single-task/:id", async (req, res) => {
     const { error } = taskValidation(req.body);
     if (error) return res.status(400).send(error);
   
@@ -34,14 +33,26 @@ router.get("/:id", async (req, res) => {
     }
   });
 
-  router.get("/user", async (req, res) => {
-    console.log("get Task=>", req.body);
+  router.get("/users", async (req, res) => {
+    console.log("get User=>", req.body);
     try {
-        const users = await User.find();
-        res.send(users);
-    } catch (err) {
-      res.status(400).send(err);
-    }
+      const users = await User.find().select('-password');
+      res.status(201).send(users);
+  } catch (e) {
+      res.status(500).send(e);
+      console.log(e);
+  }
+  });
+
+  router.get("/all-task", async (req, res) => {
+    console.log("get User=>", req.body);
+    try {
+      const tasks = await Task.find();
+      res.status(201).send(tasks);
+  } catch (e) {
+      res.status(500).send(e);
+      console.log(e);
+  }
   });
 
   module.exports = router;
