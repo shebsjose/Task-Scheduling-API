@@ -1,6 +1,6 @@
 const express = require("express");
 const router = new express.Router();
-const Task= require("../models/taskModel");
+const Task = require("../models/taskModel");
 const { taskValidation } = require("../validation");
 
 router.post("/create", async (req, res) => {
@@ -27,6 +27,20 @@ router.get("/:id", async (req, res) => {
   
     try {
         const userExists = await Task.findOne({_id: req.params.id});
+        res.send(userExists);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  });
+
+  router.get("/user", async (req, res) => {
+    console.log("get Task=>", req.body);
+
+    const { error } = taskValidation(req.body);
+    if (error) return res.status(400).send(error);
+  
+    try {
+        const userExists = await Task.find();
         res.send(userExists);
     } catch (err) {
       res.status(400).send(err);

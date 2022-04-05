@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use('/api/user', authRoute);   // parent child-authRoute
+app.use('/api/auth', authRoute);   // parent child-authRoute
 app.use('/api/task', taskRoute);
 
 app.listen(5000, () => {
