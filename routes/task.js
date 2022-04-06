@@ -1,7 +1,6 @@
 const express = require("express");
 const router = new express.Router();
 const Task = require("../models/taskModel");
-const User = require("../models/userModel");
 const { taskValidation } = require("../validation");
 
 router.post("/create", async (req, res) => {
@@ -31,17 +30,6 @@ router.get("/single-task/:id", async (req, res) => {
     } catch (err) {
       res.status(400).send(err);
     }
-  });
-
-  router.get("/users", async (req, res) => {
-    console.log("get User=>", req.body);
-    try {
-      const users = await User.find().select('-password');
-      res.status(201).send(users);
-  } catch (e) {
-      res.status(500).send(e);
-      console.log(e);
-  }
   });
 
   router.get("/all-task", async (req, res) => {

@@ -47,4 +47,15 @@ router.post("/login", async (req, res) => {
   res.header('auth-token').send({token,user});
 });
 
+router.get("/get-user", async (req, res) => {
+  console.log("get User=>", req.body);
+  try {
+    const users = await User.find().select('-password');
+    res.status(201).send(users);
+} catch (e) {
+    res.status(500).send(e);
+    console.log(e);
+}
+});
+
 module.exports = router;
