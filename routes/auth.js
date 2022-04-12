@@ -30,8 +30,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log("Login => ",req.body);
-
+ 
   const { error } = loginValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -48,7 +47,6 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/get-user", async (req, res) => {
-  console.log("get User=>", req.body);
   try {
     const users = await User.find().select('-password');
     res.status(201).send(users);

@@ -4,7 +4,7 @@ const Task = require("../models/taskModel");
 const { taskValidation } = require("../validation");
 
 router.post("/create", async (req, res) => {
-  console.log("Create Task=>", req.body);
+
   const { error } = taskValidation(req.body);
   if (error) return res.status(400).send(error);
 
@@ -32,8 +32,21 @@ router.get("/single-task/:id", async (req, res) => {
     }
   });
 
+  router.patch('/:id', async (req, res) => {
+    try {
+    const id = req.params.id;
+    const updates = res.body;
+    const options = {new : true}
+
+    const task = await Task.findByIdAndUpdate(id, updates, options);
+    res.send(task);
+    } catch (err) {
+      res.status(404).send(err)
+      console.log(err);
+    }
+  })
+
   router.get("/all-task", async (req, res) => {
-    console.log("get User=>", req.body);
     try {
       const tasks = await Task.find();
       res.status(201).send(tasks);
@@ -43,5 +56,6 @@ router.get("/single-task/:id", async (req, res) => {
   }
   });
 
+  
   module.exports = router;
 
