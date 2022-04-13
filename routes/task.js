@@ -6,7 +6,7 @@ const { taskValidation } = require("../validation");
 router.post("/create", async (req, res) => {
 
   const { error } = taskValidation(req.body);
-  if (error) return res.status(400).send(error);
+  if (error) return res.status(400).send(error.details[0].message);
 
   const task = new Task({
     description: req.body.description,
@@ -32,11 +32,16 @@ router.get("/single-task/:id", async (req, res) => {
     }
   });
 
-  router.patch('/:id', async (req, res) => {
+  // api/task/4454556
+  //api/task/change-status/1123545
+  router.patch('/change-status/:id', async (req, res) => {
     try {
     const id = req.params.id;
-    const updates = res.body;
+    const updates = req.body;
+    console.log(req.body);
     const options = {new : true}
+
+     console.log(id, updates, options);
 
     const task = await Task.findByIdAndUpdate(id, updates, options);
     res.send(task);
