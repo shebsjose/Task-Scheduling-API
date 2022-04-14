@@ -32,16 +32,12 @@ router.get("/single-task/:id", async (req, res) => {
     }
   });
 
-  // api/task/4454556
-  //api/task/change-status/1123545
+
   router.patch('/change-status/:id', async (req, res) => {
     try {
     const id = req.params.id;
     const updates = req.body;
-    console.log(req.body);
     const options = {new : true}
-
-     console.log(id, updates, options);
 
     const task = await Task.findByIdAndUpdate(id, updates, options);
     res.send(task);
@@ -60,6 +56,19 @@ router.get("/single-task/:id", async (req, res) => {
       console.log(e);
   }
   });
+
+  router.delete('/:id', async (req, res) => {
+    try {
+      const task = await Task.findOneAndDelete({_id: req.params.id})
+      if (!task) {
+        res.status(404).send()
+      }
+      res.status(201).send(task)
+    } catch (e) {
+      res.status(404).send(e)
+      console.log(e);
+    }
+  })
 
   
   module.exports = router;

@@ -6,7 +6,6 @@ const User = require("../models/userModel");
 const { registerValidation, loginValidation } = require("../validation");
 
 router.post("/register", async (req, res) => {
-  console.log("Register =>", req.body);
   const { error } = registerValidation(req.body);
   if (error) return res.status(400).send(error);
 
@@ -42,7 +41,6 @@ router.post("/login", async (req, res) => {
   if (!validPassword) return res.status(400).send("Password is incorrect" );
 
   const token = jwt.sign({user : user}, "My_secret_token");
-  console.log(token);
   res.header('auth-token').send({token,user});
 });
 
