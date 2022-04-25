@@ -38,7 +38,6 @@ router.get("/single-task/:id", async (req, res) => {
     const id = req.params.id;
     const updates = req.body;
     const options = {new : true}
-
     const task = await Task.findByIdAndUpdate(id, updates, options);
     res.send(task);
     } catch (err) {
@@ -57,7 +56,7 @@ router.get("/single-task/:id", async (req, res) => {
   }
   });
 
-  router.delete('/:id', async (req, res) => {
+  router.delete('/delete/:id', async (req, res) => {
     try {
       const task = await Task.findOneAndDelete({_id: req.params.id})
       if (!task) {
