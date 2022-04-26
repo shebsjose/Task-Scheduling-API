@@ -67,6 +67,21 @@ router.get("/single-task/:id", async (req, res) => {
       res.status(404).send(e)
       console.log(e);
     }
+  });
+
+  router.put('/update/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+     const updates = req.body;
+      const task = await Task.findByIdAndUpdate(id, updates);
+      if (!task) {
+        res.status(404).send();
+      }
+      res.status(200).send(task);
+    } catch (e) {
+      res.status(404).send(e);
+      console.log(e);
+    }
   })
 
   
