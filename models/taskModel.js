@@ -13,5 +13,5 @@ const taskSchema = new mongoose.Schema({
         type: String,
         default: 'requested'
       },
-});
+}, { timestamps: true});
 module.exports = mongoose.model("Task", taskSchema); 
