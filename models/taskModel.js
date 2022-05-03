@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema({
     description: {
@@ -13,5 +14,8 @@ const taskSchema = new mongoose.Schema({
         type: String,
         default: 'requested'
       },
+      time :{
+        type : String
+      }
 }, { timestamps: true});
 module.exports = mongoose.model("Task", taskSchema); 
