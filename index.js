@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
-
+const dotenv  = require("dotenv");
 require("./database/connection");
 
 const authRoute = require("./routes/auth");
@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoute);   // parent child-authRoute
 app.use('/api/task', taskRoute);
-
+dotenv.config();
 app.listen(5000, () => {
   console.log("Listening port on 5000");
 });
