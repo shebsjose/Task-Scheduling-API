@@ -4,7 +4,7 @@ const dotenv  = require("dotenv");
 
 dotenv.config();
 const url = process.env.MONGO_DB_ATLAS_CONNECTION;
-
+console.log(url);
 mongoose
   .connect(url, {
     useNewUrlParser: true,
