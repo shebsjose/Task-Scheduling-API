@@ -20,7 +20,7 @@ const registerValidation = (data) => {
   const taskValidation = (data) => {
     const schema =Joi.object({
       description: Joi.string().min(6).required(),
-      user: Joi.string().min(3).required(),
+      user: Joi.string().min(3).required(),                                                                                                                    
       time : Joi.string().required(),
     });
     return schema.validate(data)
